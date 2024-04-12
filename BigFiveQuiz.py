@@ -51,7 +51,26 @@ class BigFive:
         with open(filepath, "w") as f:
             json.dump(self.userProfile.getProfile(), f)
 
+def calculate_score(scores):
+    """
+    Calculates overall scores for each Big Five personality traits based on user's responses.
+
+    Args:
+        scores (dict): Dictionary containing user responses for each personality trait.
+
+    Returns:
+        dict: Dictionary containing the overall scores for each personality trait.
+    """
+    trait_scores = {}
+    for trait, answers in scores.items():
+        total_score = sum(answers.values())
+        trait_scores[trait] = total_score / len(answers)
+    return trait_scores
+
 def main():
+    """
+    Main function to execute the Big Five personality quiz.
+    """
     with open("quiz_questions.json", "r") as file:
         questions = json.load(file)
     big_five = BigFive(questions)
@@ -62,9 +81,3 @@ def main():
         print(f"{trait}: {score}")
     print(user_profile)
 
-def calculate_score(scores):
-    trait_scores = {}
-    for trait, answers in scores.items():
-        total_score = sum(answers.values())
-        trait_scores[trait] = total_score / len(answers)
-    return trait_scores
