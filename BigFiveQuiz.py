@@ -45,14 +45,40 @@ class UserProfile:
         return self.JSON
 def userInput(big_five_obj, user_profile_obj):
     """
-    Function that handles user input for the bigfive quiz.
-    It takes two arguments: an instance of the BigFive class and an instance of UserProfile class.
-    The function will continue asking questions until it  has gathered all necessary information.
-    After gathering all information, it will  create a new UserProfile object with this information 
-    and add it to the list of users. 
-  """
-    big_five_obj.start_quiz(user_profile_obj)  
+    Function that handles user input for the BigFive personality quiz. It interacts with the user
+    to gather responses to personality trait questions. Once all responses are collected, a new UserProfile
+    object is created and added to a list of users.
 
+    Parameters:
+    big_five_obj (BigFive): An instance of the BigFive class that contains and manages the personality quiz.
+    user_profile_obj (UserProfile): An instance of the UserProfile class where the user's personal data and quiz responses are stored.
+
+    Returns:
+    list: Returns a list containing the updated or newly created user profiles.
+    """
+    big_five_obj.start_quiz(user_profile_obj)  
+def display_question(self, user_name, question):
+    """
+    Displays a formatted question to the user with their name included. This method is used during
+    a quiz session to present each question in a personalized format, enhancing the user's engagement.
+
+    Parameters:
+    user_name (str): The name of the user taking the quiz, used to personalize the question display.
+    question (str): The text of the question to be displayed.
+    """
+    print(f"{user_name}:\n{question}")
+
+def __str__(self):
+    """
+    Returns a string representation of the user profile associated with an instance of the class.
+    This method provides a convenient way to quickly view the user profile's contents in a string format,
+    which can be useful for debugging or logging purposes.
+
+    Returns:
+    str: A string representation of the user profile data.
+    """
+    return str(self.user_profile)
+ 
 class BigFive:
     """Represents BigFive Quiz
     
