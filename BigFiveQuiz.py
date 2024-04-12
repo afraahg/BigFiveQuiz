@@ -43,6 +43,7 @@ class UserProfile:
             Returns: self.JSON
         """
         return self.JSON
+    
 def userInput(big_five_obj, user_profile_obj):
     """
     Function that handles user input for the BigFive personality quiz. It interacts with the user
@@ -57,6 +58,7 @@ def userInput(big_five_obj, user_profile_obj):
     list: Returns a list containing the updated or newly created user profiles.
     """
     big_five_obj.start_quiz(user_profile_obj)  
+    
 def display_question(self, user_name, question):
     """
     Displays a formatted question to the user with their name included. This method is used during
