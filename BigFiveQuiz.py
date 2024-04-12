@@ -46,12 +46,26 @@ class UserProfile:
     
 
 class BigFive:
+    """Represents BigFive Quiz
+    
+    Attributes:
+        jsonFile (str): Path to JSON file containing BigFive quiz questions
+        userProfile: UserProfile object for user taking the BigFive quiz
+    """
     def __init__(self, jsonFile, userProfile):
+        """Initializes BigFive class object
+
+        Args:
+            jsonFile : Path to the file containing BigFlive quiz questions
+            userProfile : UserProfile object for user taking the BigFive quiz
+        """
         self.userProfile = userProfile
         with open(jsonFile) as f:
             self.questions = json.load(f)
 
     def startQuiz(self):
+        """Starts Big Five Personality Quiz and updates responses
+        """
         for trait, question in self.questions.items():
             print(f"{question}")
             response = int(input(f"Enter your answer for {trait} trait, Please enter a number between 1-5: "))
@@ -61,6 +75,11 @@ class BigFive:
                 print("Invalid, Enter a number between 1-5.")
                 
     def saveUserProfile(self, filepath):
+        """Saves user personality test results
+
+        Args:
+            filepath (str): JSON file path
+        """
         with open(filepath, "w") as f:
             json.dump(self.userProfile.getProfile(), f)
 
