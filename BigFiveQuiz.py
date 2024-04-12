@@ -32,5 +32,20 @@ class UserProfile:
     
 
 class BigFive:
-    def __init__(self):
-        pass
+    def __init__(self, jsonFile, userProfile):
+        self.userProfile = userProfile
+        with open(jsonFile) as f:
+            self.questions = json.load(f)
+
+    def startQuiz(self):
+        for trait, question in self.questions.items():
+            print(f"{question}")
+            response = int(input(f"Enter your answer for {trait} trait, Please enter a number between 1-5: "))
+            if 1 <= response <= 5:
+                self.userProfile.scores[trait].append(response)
+            else:
+                print("Invalid, Enter a number between 1-5.")
+                
+    def saveUserProfile(self, filepath):
+        with open(filepath, "w") as f:
+        json.dump(self.userProfile.getProfile(), f)
