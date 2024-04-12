@@ -1,4 +1,5 @@
 ##
+import json
 
 class UserProfile:
     
@@ -48,4 +49,19 @@ class BigFive:
                 
     def saveUserProfile(self, filepath):
         with open(filepath, "w") as f:
-        json.dump(self.userProfile.getProfile(), f)
+            json.dump(self.userProfile.getProfile(), f)
+
+def main():
+    with open("quiz_questions.json", "r") as file:
+        questions = json.load(file)
+    big_five = BigFive(questions)
+    user_profile = UserProfile()
+    big_five.start_quiz(user_profile)
+    print(user_profile)
+
+def calculate_score(scores):
+    trait_scores = {}
+    for trait, answers in scores.items():
+        total_score = sum(answers.values())
+        trait_scores[trait] = total_score / len(answers)
+    return trait_scores
