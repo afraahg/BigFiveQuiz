@@ -29,7 +29,12 @@ class UserProfile:
     def CompareUser(otherUser):
         #json dump, load or something here
         pass
-    
+
+    def __str__(self):
+        return f"Hi {self.name} !"
+
+    def getProfile(self):
+        return self.JSON
     
 
 class BigFive:
