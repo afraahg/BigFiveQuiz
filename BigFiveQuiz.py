@@ -31,9 +31,17 @@ class UserProfile:
         pass
 
     def __str__(self):
+        """
+            Gives a greeting for the user
+            Returns: self.name
+        """
         return f"Hi {self.name} !"
 
     def getProfile(self):
+        """
+            Retrieves data from JSON file
+            Returns: self.JSON
+        """
         return self.JSON
     
 
