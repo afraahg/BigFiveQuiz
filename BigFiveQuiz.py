@@ -69,7 +69,7 @@ def calculate_score(scores):
 
 def main():
     """
-    Main function to execute the Big Five personality quiz.
+    Executes Big Five Quiz
     """
     with open("quiz_questions.json", "r") as file:
         questions = json.load(file)
