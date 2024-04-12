@@ -43,7 +43,15 @@ class UserProfile:
             Returns: self.JSON
         """
         return self.JSON
-    
+def userInput(big_five_obj, user_profile_obj):
+    """
+    Function that handles user input for the bigfive quiz.
+    It takes two arguments: an instance of the BigFive class and an instance of UserProfile class.
+    The function will continue asking questions until it  has gathered all necessary information.
+    After gathering all information, it will  create a new UserProfile object with this information 
+    and add it to the list of users. 
+  """
+    big_five_obj.start_quiz(user_profile_obj)  
 
 class BigFive:
     """Represents BigFive Quiz
