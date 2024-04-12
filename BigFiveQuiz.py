@@ -57,6 +57,9 @@ def main():
     big_five = BigFive(questions)
     user_profile = UserProfile()
     big_five.start_quiz(user_profile)
+    trait_scores = calculate_score(user_profile.scores)
+    for trait, score in trait_scores.items():
+        print(f"{trait}: {score}")
     print(user_profile)
 
 def calculate_score(scores):
