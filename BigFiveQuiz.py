@@ -1,5 +1,6 @@
 ##
 import json
+import pandas as pd
 
 class UserProfile:
     
@@ -9,32 +10,62 @@ class UserProfile:
         self.age=age
         self.gender=gender
         #score tracker
-        self.scores=scores
+        self.scores={'Extraversion': {'EXT1': 0, 'EXT2': 0, 'EXT3': 0,'EXT4': 0, 'EXT5': 0, 'EXT6': 0,'EXT7': 0, 'EXT8': 0, 'EXT9': 0, 'EXT10':0 },
+                        'Agreeableness': {'AGR1': 0, 'AGR2': 0, 'AGR3': 0, 'AGR4': 0, 'AGR5': 0, 'AGR6': 0, 'AGR7': 0, 'AGR8': 0, 'AGR9': 0, 'AGR10': 0},
+                        'Conscientiousness': {'CSN1': 0, 'CSN2': 0, 'CSN3': 0, 'CSN4': 0, 'CSN5': 0, 'CSN6': 0, 'CSN7': 0, 'CSN8': 0, 'CSN9': 0, 'CSN10':0},
+                        'Neuroticism': {'EST1': 0, 'EST2': 0, 'EST3': 0, 'EST4': 0, 'EST5': 0, 'EST6': 0, 'EST7': 0, 'EST8': 0, 'EST9': 0, 'EST10': 0},
+                        'Openness': {'OPN1': 0, 'OPN2': 0, 'OPN3': 0, 'OPN4': 0, 'OPN5': 0, 'OPN6': 0, 'OPN7': 0, 'OPN8': 0, 'OPN9': 0, 'OPN10': 0}
+                        }
+
         
         #json profile
         self.profileJSON={self.name:self.scores}
         
-    def DisplayGraph():
+    def DisplayGraph(self, type="user"):
+        """DisplayGraph will display a graph based on the type passed in.
+        (1)total graph: displays results from all users in directory
+        (2)avg trait graph: displays avg responses for each trait for ALL users 
+        (3)user graph: displays graph for responses in self
+
+        Args:
+            type (str): _description_
+        """
         
         #pass in different values to display different type of graph?
         #to compare # of reson
         
         # x axis is big five, y axis is the number of responses 
         #histogram
-        #
+        df=pd.DataFrame(self.scores)
         
+        # (1)
         
-        pass
+        # (2)
+        # (3)
+        totalScores=df.sum()
+        userGraph=df.plot.hist()
+
+        print(userGraph)
     
-    def CompareUser(otherUser):
-        #json dump, load or something here
-        pass
+    def CompareUser(self, otherUser):
+        """Checks if user is in directory
+
+        Args:
+            otherUser (UserProfile): other user to be compared to
+
+        Returns:
+            (boolean): if user is in directory
+        """
+        
+        if self.name==otherUser.name:
+            return True
+        return False
 
     def __str__(self):
         return f"Hi {self.name} !"
 
     def getProfile(self):
-        return self.JSON
+        return self.profileJSON
     
 
 class BigFive:
