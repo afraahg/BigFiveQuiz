@@ -1,6 +1,8 @@
 ##
 import json
 import pandas as pd
+import seaborn as sns
+
 
 class UserProfile:
     
@@ -172,6 +174,7 @@ def main():
     """
     with open("quiz_questions.json", "r") as file:
         questions = json.load(file)
+    
     big_five = BigFive(questions)
     user_profile = UserProfile()
     big_five.start_quiz(user_profile)
@@ -180,3 +183,10 @@ def main():
         print(f"{trait}: {score}")
     print(user_profile)
 
+
+
+    
+if __name__== "__main__":
+    #need to implement
+    
+    main()
