@@ -33,11 +33,8 @@ class UserProfile:
             type (str): _description_
         """
         
-        #pass in different values to display different type of graph?
-        #to compare # of reson
-        
         # x axis is big five, y axis is the number of responses 
-        #histogram
+        
         
         #self.scores keys: Extraversion, Agreeableness, Conscientiousness, Neuroticism, Openness
         
@@ -58,11 +55,16 @@ class UserProfile:
             agrDF=pd.DataFrame.from_dict(self.scores['Agreeableness'])
             consDF=pd.DataFrame.from_dict(self.scores['Conscientiousness'])
             neuroDF=pd.DataFrame.from_dict(self.scores['Neuroticism'])
-            openDF=pd.DataFrame.from_dict(self.scores['Neuroticism'])
+            openDF=pd.DataFrame.from_dict(self.scores['Openness'])
             
             #df.plot.bar(x, y)
-            
-            print(df.plot.bar())
+            #need to figure out appropriate method to implement 
+            print(extraDF.plot.bar())
+            print(agrDF.plot.bar())
+            print(consDF.plot.bar())
+            print(neuroDF.plot.bar())
+            print(openDF.plot.bar())
+        
         df=pd.DataFrame(self.scores)
         totalScores=df.sum()
         userGraph=df.plot.hist()
@@ -192,6 +194,8 @@ def main():
     """
     Executes Big Five Quiz
     """
+    
+    #this should be for user profile json..?
     with open("quiz_questions.json", "r") as file:
         questions = json.load(file)
     
