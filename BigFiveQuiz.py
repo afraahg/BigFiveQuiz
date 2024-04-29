@@ -30,33 +30,56 @@ class UserProfile:
         (3)user graph: displays graph for responses in self
 
         Args:
+            self (UserProfile): self profile to display 
+            other (UserProfile): other graph to be compared to?
             type (str): _description_
         """
         
         # x axis is big five, y axis is the number of responses 
         # will need to loop through dictionary to convert responses to list for optimal output for graph
-        
+        #convert questions and responses to list objects
+
         extraRES=[]
+        extraQ=[]
         for q,answers in self.scores['Extraversion']:
+            extraQ.append(q)
             extraRES.append(answers)
             
         agrRES=[]
+        agrQ=[]
         for q,answers in self.scores['Agreeableness']:
+            agrQ.append(q)
             agrRES.append(answers)
         
         consRES=[]
+        consQ=[]
         for q,answers in self.scores['Conscientiousness']:
+            consQ.append(q)
             consRES.append(answers)
         
         neuroRES=[]
+        neuroQ=[]
         for q,answers in self.scores['Neuroticism']:
+            neuroQ.append(q)
             neuroRES.append(answers)
             
         openRES=[]
+        openQ=[]
         for q,answers in self.scores['Openness']:
+            openQ.append(q)
             openRES.append(answers)
         
+        
+        
         #self.scores keys: Extraversion, Agreeableness, Conscientiousness, Neuroticism, Openness
+        
+        #convert questions and responses to dataframe object
+        extraDF=pd.DataFrame({'Extraversion Responses': extraRES}, {'Extraversion Questions': extraQ})
+        agrDF=pd.DataFrame({'Agreeableness Responses': agrRES }, {'Agreeableness Questions': agrQ})
+        consDF=pd.DataFrame({'Conscientiousness Responses': consRES}, {'Conscientiousness Questions': consQ})
+        neuroDF=pd.DataFrame({'Neuroticism Responses': neuroRES}, {'Neuroticism Questions': neuroQ})
+        openDF=pd.DataFrame({'Openness Responses': openRES}, {'Openness Questions': openQ} )
+        
         
         # (1) total graph: displays results from all users in directory
         if type == "total":
@@ -71,25 +94,18 @@ class UserProfile:
         
         # (3) user graph: displays graph for responses in self for each category
         if type == "user":
-            extraDF=pd.DataFrame.from_dict(self.scores['Extraversion'])
-            agrDF=pd.DataFrame.from_dict(self.scores['Agreeableness'])
-            consDF=pd.DataFrame.from_dict(self.scores['Conscientiousness'])
-            neuroDF=pd.DataFrame.from_dict(self.scores['Neuroticism'])
-            openDF=pd.DataFrame.from_dict(self.scores['Openness'])
+            
             
             #df.plot.bar(x, y)
             #need to figure out appropriate method to implement 
-            print(extraDF.plot.bar())
-            print(agrDF.plot.bar())
-            print(consDF.plot.bar())
-            print(neuroDF.plot.bar())
-            print(openDF.plot.bar())
+            print(extraDF.plot.bar(x="Extraversion Questions", y="Extraversion Responses"))
+            print(agrDF.plot.bar(x="Agreeableness Questions", y="Agreeableness Responses"))
+            print(consDF.plot.bar(x="Conscientiousness Questions", y="Conscientiousness Responses"))
+            print(neuroDF.plot.bar(x="Neuroticism Questions", y="Neuroticism Responses"))
+            print(openDF.plot.bar(x="Openness Questions", y="Openness Responses"))
         
-        df=pd.DataFrame(self.scores)
-        totalScores=df.sum()
-        userGraph=df.plot.hist()
 
-        print(userGraph)
+        
     
     def CompareUser(self, otherUser):
         """Checks if user is in directory
