@@ -34,7 +34,27 @@ class UserProfile:
         """
         
         # x axis is big five, y axis is the number of responses 
+        # will need to loop through dictionary to convert responses to list for optimal output for graph
         
+        extraRES=[]
+        for q,answers in self.scores['Extraversion']:
+            extraRES.append(answers)
+            
+        agrRES=[]
+        for q,answers in self.scores['Agreeableness']:
+            agrRES.append(answers)
+        
+        consRES=[]
+        for q,answers in self.scores['Conscientiousness']:
+            consRES.append(answers)
+        
+        neuroRES=[]
+        for q,answers in self.scores['Neuroticism']:
+            neuroRES.append(answers)
+            
+        openRES=[]
+        for q,answers in self.scores['Openness']:
+            openRES.append(answers)
         
         #self.scores keys: Extraversion, Agreeableness, Conscientiousness, Neuroticism, Openness
         
