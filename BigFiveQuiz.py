@@ -38,12 +38,32 @@ class UserProfile:
         
         # x axis is big five, y axis is the number of responses 
         #histogram
+        
+        #self.scores keys: Extraversion, Agreeableness, Conscientiousness, Neuroticism, Openness
+        
+        # (1) total graph: displays results from all users in directory
+        if type == "total":
+            
+            print()
+        
+        # (2) avg trait graph: displays avg responses for each trait for ALL users 
+        if type == "avg":
+            
+            print()
+        
+        
+        # (3) user graph: displays graph for responses in self for each category
+        if type == "user":
+            extraDF=pd.DataFrame.from_dict(self.scores['Extraversion'])
+            agrDF=pd.DataFrame.from_dict(self.scores['Agreeableness'])
+            consDF=pd.DataFrame.from_dict(self.scores['Conscientiousness'])
+            neuroDF=pd.DataFrame.from_dict(self.scores['Neuroticism'])
+            openDF=pd.DataFrame.from_dict(self.scores['Neuroticism'])
+            
+            #df.plot.bar(x, y)
+            
+            print(df.plot.bar())
         df=pd.DataFrame(self.scores)
-        
-        # (1)
-        
-        # (2)
-        # (3)
         totalScores=df.sum()
         userGraph=df.plot.hist()
 
