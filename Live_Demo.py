@@ -1,7 +1,7 @@
 import json
 import pandas as pd
 import seaborn as sns
-
+import math
 class UserProfile:
     
     def __init__(self, name, age, gender, scores):
