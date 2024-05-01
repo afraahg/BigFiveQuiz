@@ -2,7 +2,7 @@
     "question_id": 1,
     "user_id": "user123",
     "response": {
-        "answer_value": 7,
+        "answer_value": 5,
         "answer_label": "Strongly Agree"
     }
 }
