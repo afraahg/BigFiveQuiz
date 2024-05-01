@@ -10,12 +10,13 @@ class UserProfile:
         self.age=age
         self.gender=gender
         #score tracker
-        self.scores={'Extraversion': {'EXT1': 0, 'EXT2': 0, 'EXT3': 0,'EXT4': 0, 'EXT5': 0, 'EXT6': 0,'EXT7': 0, 'EXT8': 0, 'EXT9': 0, 'EXT10':0 },
+        self.scores=scores
+        """{'Extraversion': {'EXT1': 0, 'EXT2': 0, 'EXT3': 0,'EXT4': 0, 'EXT5': 0, 'EXT6': 0,'EXT7': 0, 'EXT8': 0, 'EXT9': 0, 'EXT10':0 },
                         'Agreeableness': {'AGR1': 0, 'AGR2': 0, 'AGR3': 0, 'AGR4': 0, 'AGR5': 0, 'AGR6': 0, 'AGR7': 0, 'AGR8': 0, 'AGR9': 0, 'AGR10': 0},
                         'Conscientiousness': {'CSN1': 0, 'CSN2': 0, 'CSN3': 0, 'CSN4': 0, 'CSN5': 0, 'CSN6': 0, 'CSN7': 0, 'CSN8': 0, 'CSN9': 0, 'CSN10':0},
                         'Neuroticism': {'EST1': 0, 'EST2': 0, 'EST3': 0, 'EST4': 0, 'EST5': 0, 'EST6': 0, 'EST7': 0, 'EST8': 0, 'EST9': 0, 'EST10': 0},
                         'Openness': {'OPN1': 0, 'OPN2': 0, 'OPN3': 0, 'OPN4': 0, 'OPN5': 0, 'OPN6': 0, 'OPN7': 0, 'OPN8': 0, 'OPN9': 0, 'OPN10': 0}
-                        }
+                        }"""
 
         
         #json profile
@@ -106,7 +107,15 @@ class UserProfile:
 
 if __name__== "__main__":
     
+    # user profile init: (name, age, gender, scores)
+    answerFile=None
+    sampleProfile=None
     with open("quiz_questions_answers.json", "r") as file:
-        questions = json.load(file)
-        print(questions)
+        answerFile = json.load(file)
+        
+    print(answerFile)
+    for person,answers in answerFile:
+        sampleProfile= UserProfile(person, 21, 'M', answers)
+            
+    sampleProfile.DisplayGraph()
     
