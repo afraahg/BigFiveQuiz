@@ -1,0 +1,64 @@
+{
+    "John Doe": {
+        "Extraversion": {
+            "EXT1": 5,
+            "EXT2": 4,
+            "EXT3": 5,
+            "EXT4": 4,
+            "EXT5": 5,
+            "EXT6": 4,
+            "EXT7": 3,
+            "EXT8": 5,
+            "EXT9": 4,
+            "EXT10": 5
+        },
+        "Agreeableness": {
+            "AGR1": 5,
+            "AGR2": 5,
+            "AGR3": 5,
+            "AGR4": 5,
+            "AGR5": 5,
+            "AGR6": 4,
+            "AGR7": 4,
+            "AGR8": 4,
+            "AGR9": 5,
+            "AGR10": 5
+        },
+        "Conscientiousness": {
+            "CSN1": 4,
+            "CSN2": 4,
+            "CSN3": 5,
+            "CSN4": 5,
+            "CSN5": 5,
+            "CSN6": 5,
+            "CSN7": 4,
+            "CSN8": 4,
+            "CSN9": 4,
+            "CSN10": 4
+        },
+        "Neuroticism": {
+            "EST1": 2,
+            "EST2": 3,
+            "EST3": 2,
+            "EST4": 2,
+            "EST5": 1,
+            "EST6": 1,
+            "EST7": 2,
+            "EST8": 2,
+            "EST9": 3,
+            "EST10": 2
+        },
+        "Openness": {
+            "OPN1": 5,
+            "OPN2": 5,
+            "OPN3": 5,
+            "OPN4": 4,
+            "OPN5": 4,
+            "OPN6": 4,
+            "OPN7": 5,
+            "OPN8": 5,
+            "OPN9": 4,
+            "OPN10": 4
+        }
+    }
+}
