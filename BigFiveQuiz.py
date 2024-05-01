@@ -187,8 +187,8 @@ class BigFive:
             userProfile : UserProfile object for user taking the BigFive quiz
         """
         self.userProfile = userProfile
-        with open(jsonFile) as f:
-            self.questions = json.load(f)
+        with open("quiz_questions.json", "r") as jsonFile:
+            self.questions = json.load(jsonFile)
 
     def startQuiz(self):
         """Starts Big Five Personality Quiz and updates responses
