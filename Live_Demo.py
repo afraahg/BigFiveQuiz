@@ -40,31 +40,31 @@ class UserProfile:
 
         extraRES=[]
         extraQ=[]
-        for q,answers in self.scores['Extraversion']:
+        for q,answers in self.scores['Extraversion'].items():
             extraQ.append(q)
             extraRES.append(answers)
             
         agrRES=[]
         agrQ=[]
-        for q,answers in self.scores['Agreeableness']:
+        for q,answers in self.scores['Agreeableness'].items():
             agrQ.append(q)
             agrRES.append(answers)
         
         consRES=[]
         consQ=[]
-        for q,answers in self.scores['Conscientiousness']:
+        for q,answers in self.scores['Conscientiousness'].items():
             consQ.append(q)
             consRES.append(answers)
         
         neuroRES=[]
         neuroQ=[]
-        for q,answers in self.scores['Neuroticism']:
+        for q,answers in self.scores['Neuroticism'].items():
             neuroQ.append(q)
             neuroRES.append(answers)
             
         openRES=[]
         openQ=[]
-        for q,answers in self.scores['Openness']:
+        for q,answers in self.scores['Openness'].items():
             openQ.append(q)
             openRES.append(answers)
         
@@ -114,7 +114,7 @@ if __name__== "__main__":
         answerFile = json.load(file)
         
     print(answerFile)
-    for person,answers in answerFile:
+    for person,answers in answerFile.items():
         sampleProfile= UserProfile(person, 21, 'M', answers)
             
     sampleProfile.DisplayGraph()
