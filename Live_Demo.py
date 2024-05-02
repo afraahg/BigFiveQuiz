@@ -11,13 +11,13 @@ class UserProfile:
         self.age=age
         self.gender=gender
         #score tracker
-        self.scores=\
-        {'Extraversion': {'EXT1': 0, 'EXT2': 0, 'EXT3': 0,'EXT4': 0, 'EXT5': 0, 'EXT6': 0,'EXT7': 0, 'EXT8': 0, 'EXT9': 0, 'EXT10':0 },
+        self.scores=scores
+        """{'Extraversion': {'EXT1': 0, 'EXT2': 0, 'EXT3': 0,'EXT4': 0, 'EXT5': 0, 'EXT6': 0,'EXT7': 0, 'EXT8': 0, 'EXT9': 0, 'EXT10':0 },
                         'Agreeableness': {'AGR1': 0, 'AGR2': 0, 'AGR3': 0, 'AGR4': 0, 'AGR5': 0, 'AGR6': 0, 'AGR7': 0, 'AGR8': 0, 'AGR9': 0, 'AGR10': 0},
                         'Conscientiousness': {'CSN1': 0, 'CSN2': 0, 'CSN3': 0, 'CSN4': 0, 'CSN5': 0, 'CSN6': 0, 'CSN7': 0, 'CSN8': 0, 'CSN9': 0, 'CSN10':0},
                         'Neuroticism': {'EST1': 0, 'EST2': 0, 'EST3': 0, 'EST4': 0, 'EST5': 0, 'EST6': 0, 'EST7': 0, 'EST8': 0, 'EST9': 0, 'EST10': 0},
                         'Openness': {'OPN1': 0, 'OPN2': 0, 'OPN3': 0, 'OPN4': 0, 'OPN5': 0, 'OPN6': 0, 'OPN7': 0, 'OPN8': 0, 'OPN9': 0, 'OPN10': 0}
-                        }
+                        }"""
 
         
         #json profile
@@ -44,31 +44,35 @@ class UserProfile:
         for q,answers in self.scores['Extraversion'].items():
             extraQ.append(q)
             extraRES.append(answers)
+        print(extraRES)
             
         agrRES=[]
         agrQ=[]
         for q,answers in self.scores['Agreeableness'].items():
             agrQ.append(q)
             agrRES.append(answers)
+        print(agrRES)
         
         consRES=[]
         consQ=[]
         for q,answers in self.scores['Conscientiousness'].items():
             consQ.append(q)
             consRES.append(answers)
+        print(consRES)
         
         neuroRES=[]
         neuroQ=[]
         for q,answers in self.scores['Neuroticism'].items():
             neuroQ.append(q)
             neuroRES.append(answers)
-            
+        print(neuroRES)
+        
         openRES=[]
         openQ=[]
         for q,answers in self.scores['Openness'].items():
             openQ.append(q)
             openRES.append(answers)
-        
+        print(openRES)
         
         
         #self.scores keys: Extraversion, Agreeableness, Conscientiousness, Neuroticism, Openness
@@ -80,6 +84,11 @@ class UserProfile:
         neuroDF=pd.DataFrame({'Neuroticism Responses': neuroRES, 'Neuroticism Questions': neuroQ})
         openDF=pd.DataFrame({'Openness Responses': openRES, 'Openness Questions': openQ} )
         
+        print(extraDF)
+        print(agrDF)
+        print(consDF)
+        print(neuroDF)
+        print(openDF)
         
         # (1) total graph: displays results from all users in directory
         if type == "total":
