@@ -1,6 +1,7 @@
 import json
 import pandas as pd
 import seaborn as sns
+import matplotlib.pyplot as plt
 
 class UserProfile:
     
@@ -97,11 +98,14 @@ class UserProfile:
             
             #df.plot.bar(x, y)
             #need to figure out appropriate method to implement 
-            print(extraDF.plot.bar(x="Extraversion Questions", y="Extraversion Responses"))
-            print(agrDF.plot.bar(x="Agreeableness Questions", y="Agreeableness Responses"))
-            print(consDF.plot.bar(x="Conscientiousness Questions", y="Conscientiousness Responses"))
-            print(neuroDF.plot.bar(x="Neuroticism Questions", y="Neuroticism Responses"))
-            print(openDF.plot.bar(x="Openness Questions", y="Openness Responses"))
+            extraDF.plot(kind='bar', x="Extraversion Questions", y="Extraversion Responses")
+            agrDF.plot(kind='bar', x="Agreeableness Questions", y="Agreeableness Responses")
+            consDF.plot(kind='bar',x="Conscientiousness Questions", y="Conscientiousness Responses")
+            neuroDF.plot(kind='bar', x="Neuroticism Questions", y="Neuroticism Responses")
+            openDF.plot(kind='bar', x="Openness Questions", y="Openness Responses")
+            
+            plt.show()
+
         
 
 
