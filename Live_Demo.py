@@ -8,14 +8,10 @@ class UserProfile:
         Class for handling the user's profile.
 
         Attributes:
-            name:
-                the user's name
-            age:
-               the user's age
-            gender:
-                the user's gender
-            scores:
-                the resulting scores based on the user's answers
+            name: the user's name
+            age: the user's age
+            gender: the user's gender
+            scores: the resulting scores based on the user's answers
     """
 
     def __init__(self, name, age, gender, scores):
