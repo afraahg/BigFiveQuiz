@@ -183,9 +183,9 @@ def calculate_score(scores):
         dict: Dictionary containing the overall scores for each personality trait.
     """
     trait_scores = {}
-    for trait, answers in scores.items():
-        total_score = sum(answers.values())
-        trait_scores[trait] = total_score / len(answers)
+    for trait, responses in scores.items():
+        total_score = sum(response[trait] for response in responses)
+        trait_scores[trait] = total_score / len(responses)
     return trait_scores
 
  
@@ -220,11 +220,11 @@ class BigFive:
     def startQuiz(self):
         """Starts Big Five Personality Quiz and updates responses
         """
-        for trait, question in self.questions.items():
-            print(f"{question}")
+        for trait, questions in self.questions.items():
+            print(f"{questions}")
             response = int(input(f"Enter your answer for {trait} trait, Please enter a number between 1-5: "))
             if 1 <= response <= 5:
-                self.userProfile.scores[trait].append(response)
+                self.userProfile.scores[trait].append({trait: response})
             else:
                 print("Invalid, Enter a number between 1-5.")
                 
@@ -252,7 +252,7 @@ def main():
         'Openness': []
     })
     big_five = BigFive(questions, user_profile)
-    big_five.startQuiz(user_profile)
+    big_five.startQuiz()
     trait_scores = calculate_score(user_profile.scores)
     for trait, score in trait_scores.items():
         print(f"{trait}: {score}")
