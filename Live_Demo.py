@@ -4,7 +4,6 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 class UserProfile:
-
     def __init__(self, name, age, gender, scores):
         
         self.name=name
