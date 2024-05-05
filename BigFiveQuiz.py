@@ -161,7 +161,7 @@ def userInput(big_five_obj, user_profile_obj):
     """
     big_five_obj.start_quiz(user_profile_obj)  
     
-def display_question(self, user_name, question):
+def display_question(self, user_name, questions):
     """
     Displays a formatted question to the user with their name included. This method is used during
     a quiz session to present each question in a personalized format, enhancing the user's engagement.
@@ -170,7 +170,7 @@ def display_question(self, user_name, question):
     user_name (str): The name of the user taking the quiz, used to personalize the question display.
     question (str): The text of the question to be displayed.
     """
-    print(f"{user_name}:\n{question}")
+    print(f"{user_name}:\n{questions}")
 
 def __str__(self):
     """
@@ -235,7 +235,7 @@ def calculate_score(scores):
     for trait, answers in scores.items():
         total_score = sum(answers.values())
         trait_scores[trait] = total_score / len(answers)
-    return trait_scores
+    print(trait_scores)
 
 def main():
     """
@@ -258,15 +258,4 @@ def main():
 
     
 if __name__== "__main__":
-     # user profile init: (name, age, gender, scores)
-    answerFile=None
-    sampleProfile=None
-    with open("quiz_questions_answers.json", "r") as file:
-        answerFile = json.load(file)
-        
-    print(answerFile)
-    for person,answers in answerFile.items():
-        sampleProfile= UserProfile(person, 21, 'M', answers)
-            
-    sampleProfile.DisplayGraph()
-    
+    main()
