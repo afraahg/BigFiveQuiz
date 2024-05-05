@@ -241,13 +241,10 @@ def main():
     """
     Executes Big Five Quiz
     """
-    
-    #this should be for user profile json..?
-    with open("quiz_questions.json", "r") as file:
-        questions = json.load(file)
-    
-    big_five = BigFive(questions)
+    jsonFile = "quiz_questions.json"  # Provide the path to your JSON file.
+    questions = jsonFile
     user_profile = UserProfile()
+    big_five = BigFive(jsonFile, user_profile)
     big_five.start_quiz(user_profile)
     trait_scores = calculate_score(user_profile.scores)
     for trait, score in trait_scores.items():
