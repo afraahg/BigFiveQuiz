@@ -241,9 +241,16 @@ def main():
     """
     Executes Big Five Quiz
     """
+    name = input("Enter your name: ")
+    age = input("Enter your age: ")
+    gender = input("Enter your gender: ")
     jsonFile = "quiz_questions.json"  # Provide the path to your JSON file.
     questions = jsonFile
-    user_profile = UserProfile()
+    user_profile = UserProfile(name, age, gender, {
+        'Extraversion': [], 'Agreeableness': [],
+        'Conscientiousness': [], 'Neuroticism': [],
+        'Openness': []
+    })
     big_five = BigFive(jsonFile, user_profile)
     big_five.start_quiz(user_profile)
     trait_scores = calculate_score(user_profile.scores)
