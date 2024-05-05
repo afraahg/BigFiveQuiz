@@ -172,16 +172,22 @@ def display_question(self, user_name, questions):
     """
     print(f"{user_name}:\n{questions}")
 
-def __str__(self):
+def calculate_score(scores):
     """
-    Returns a string representation of the user profile associated with an instance of the class.
-    This method provides a convenient way to quickly view the user profile's contents in a string format,
-    which can be useful for debugging or logging purposes.
+    Calculates overall scores for each Big Five personality traits based on user's responses.
+
+    Args:
+        scores (dict): Dictionary containing user responses for each personality trait.
 
     Returns:
-    str: A string representation of the user profile data.
+        dict: Dictionary containing the overall scores for each personality trait.
     """
-    return str(self.user_profile)
+    trait_scores = {}
+    for trait, answers in scores.items():
+        total_score = sum(answers.values())
+        trait_scores[trait] = total_score / len(answers)
+    return trait_scores
+
  
 class BigFive:
     """Represents BigFive Quiz
@@ -200,6 +206,16 @@ class BigFive:
         self.userProfile = userProfile
         with open("quiz_questions.json", "r") as jsonFile:
             self.questions = json.load(jsonFile)
+    def __str__(self):
+        """
+        Returns a string representation of the user profile associated with an instance of the class.
+        This method provides a convenient way to quickly view the user profile's contents in a string format,
+        which can be useful for debugging or logging purposes.
+
+        Returns:
+        str: A string representation of the user profile data.
+        """
+        return str(self.user_profile)
 
     def startQuiz(self):
         """Starts Big Five Personality Quiz and updates responses
@@ -220,22 +236,6 @@ class BigFive:
         """
         with open(filepath, "w") as f:
             json.dump(self.userProfile.getProfile(), f)
-
-def calculate_score(scores):
-    """
-    Calculates overall scores for each Big Five personality traits based on user's responses.
-
-    Args:
-        scores (dict): Dictionary containing user responses for each personality trait.
-
-    Returns:
-        dict: Dictionary containing the overall scores for each personality trait.
-    """
-    trait_scores = {}
-    for trait, answers in scores.items():
-        total_score = sum(answers.values())
-        trait_scores[trait] = total_score / len(answers)
-    print(trait_scores)
 
 def main():
     """
