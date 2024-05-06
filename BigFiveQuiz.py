@@ -12,7 +12,9 @@ class UserProfile:
         self.age=age
         self.gender=gender
         #score tracker
+        # Initialize scores as a dictionary of dictionaries to store scores for each question under each trait.
         self.scores=scores
+
         """{'Extraversion': {'EXT1': 0, 'EXT2': 0, 'EXT3': 0,'EXT4': 0, 'EXT5': 0, 'EXT6': 0,'EXT7': 0, 'EXT8': 0, 'EXT9': 0, 'EXT10':0 },
                         'Agreeableness': {'AGR1': 0, 'AGR2': 0, 'AGR3': 0, 'AGR4': 0, 'AGR5': 0, 'AGR6': 0, 'AGR7': 0, 'AGR8': 0, 'AGR9': 0, 'AGR10': 0},
                         'Conscientiousness': {'CSN1': 0, 'CSN2': 0, 'CSN3': 0, 'CSN4': 0, 'CSN5': 0, 'CSN6': 0, 'CSN7': 0, 'CSN8': 0, 'CSN9': 0, 'CSN10':0},
@@ -137,7 +139,7 @@ class UserProfile:
             Gives a greeting for the user
             Returns: self.name
         """
-        return f"Hi {self.name} !"
+        return f"BigFive Quiz for {self.name}"
 
     def getProfile(self):
         """
@@ -243,7 +245,7 @@ def main():
     """
     name = input("Enter your name: ")
     age = input("Enter your age: ")
-    gender = input("Enter your gender: ")
+    gender = input("Enter your gender(can be Male or Female or M or F): ")
     jsonFile = "quiz_questions.json"  # Provide the path to your JSON file.
     questions = jsonFile
     user_profile = UserProfile(name, age, gender, {
