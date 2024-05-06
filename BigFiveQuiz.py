@@ -160,6 +160,7 @@ def userInput(big_five_obj, user_profile_obj):
     list: Returns a list containing the updated or newly created user profiles.
     """
     big_five_obj.start_quiz(user_profile_obj)  
+    return [user_profile_obj]
     
 def display_question(self, user_name, questions):
     """
