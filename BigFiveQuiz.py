@@ -12,7 +12,9 @@ class UserProfile:
         self.age=age
         self.gender=gender
         #score tracker
+        # Initialize scores as a dictionary of dictionaries to store scores for each question under each trait.
         self.scores=scores
+
         """{'Extraversion': {'EXT1': 0, 'EXT2': 0, 'EXT3': 0,'EXT4': 0, 'EXT5': 0, 'EXT6': 0,'EXT7': 0, 'EXT8': 0, 'EXT9': 0, 'EXT10':0 },
                         'Agreeableness': {'AGR1': 0, 'AGR2': 0, 'AGR3': 0, 'AGR4': 0, 'AGR5': 0, 'AGR6': 0, 'AGR7': 0, 'AGR8': 0, 'AGR9': 0, 'AGR10': 0},
                         'Conscientiousness': {'CSN1': 0, 'CSN2': 0, 'CSN3': 0, 'CSN4': 0, 'CSN5': 0, 'CSN6': 0, 'CSN7': 0, 'CSN8': 0, 'CSN9': 0, 'CSN10':0},
@@ -137,7 +139,7 @@ class UserProfile:
             Gives a greeting for the user
             Returns: self.name
         """
-        return f"Hi {self.name}, here are your results!"
+        return f"BigFive Quiz for {self.name}"
 
     def getProfile(self):
         """
@@ -148,18 +150,23 @@ class UserProfile:
     
 def userInput(big_five_obj, user_profile_obj):
     """
-    Function that handles user input for the BigFive personality quiz. It interacts with the user
-    to gather responses to personality trait questions. Once all responses are collected, a new UserProfile
-    object is created and added to a list of users.
+    Function that handles user input for the BigFive personality quiz. It uses the BigFive instance
+    to manage the quiz process, updating the UserProfile with the user's responses. After completing the quiz,
+    the updated UserProfile is returned in a list.
 
     Parameters:
     big_five_obj (BigFive): An instance of the BigFive class that contains and manages the personality quiz.
     user_profile_obj (UserProfile): An instance of the UserProfile class where the user's personal data and quiz responses are stored.
 
     Returns:
-    list: Returns a list containing the updated or newly created user profiles.
+    list: Returns a list containing the updated user profile.
     """
-    big_five_obj.start_quiz(user_profile_obj)  
+    # Start the quiz and update the user profile
+    big_five_obj.startQuiz(user_profile_obj)  # Ensure this is the correct method name in the BigFive class
+
+    # Returning the updated user profile in a list for consistency with function description
+    return [user_profile_obj]
+
     
 def display_question(self, user_name, questions):
     """
@@ -184,7 +191,7 @@ def calculate_score(scores):
     """
     trait_scores = {}
     for trait, responses in scores.items():
-        total_score = sum(responses) 
+        total_score = sum(response[trait] for response in responses)
         trait_scores[trait] = total_score / len(responses)
     return trait_scores
 
@@ -243,13 +250,13 @@ def main():
     """
     name = input("Enter your name: ")
     age = input("Enter your age: ")
-    gender = input("Enter your gender: ")
+    gender = input("Enter your gender(can be Male or Female or M or F): ")
     jsonFile = "quiz_questions.json"  # Provide the path to your JSON file.
     questions = jsonFile
     user_profile = UserProfile(name, age, gender, {
-        'Extraversion': {}, 'Agreeableness': {},
-        'Conscientiousness': {}, 'Neuroticism': {},
-        'Openness': {}
+        'Extraversion': [], 'Agreeableness': [],
+        'Conscientiousness': [], 'Neuroticism': [],
+        'Openness': []
     })
     big_five = BigFive(questions, user_profile)
     big_five.startQuiz()
