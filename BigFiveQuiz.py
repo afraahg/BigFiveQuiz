@@ -137,7 +137,7 @@ class UserProfile:
             Gives a greeting for the user
             Returns: self.name
         """
-        return f"Hi {self.name} !"
+        return f"Hi {self.name}, here are your results!"
 
     def getProfile(self):
         """
@@ -184,7 +184,7 @@ def calculate_score(scores):
     """
     trait_scores = {}
     for trait, responses in scores.items():
-        total_score = sum(response[trait] for response in responses)
+        total_score = sum(responses) 
         trait_scores[trait] = total_score / len(responses)
     return trait_scores
 
