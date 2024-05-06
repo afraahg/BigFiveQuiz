@@ -251,7 +251,7 @@ def main():
     name = input("Enter your name: ")
     age = input("Enter your age: ")
     gender = input("Enter your gender: ")
-    jsonFile = "quiz_questions.json"  # Provide the path to your JSON file.
+    jsonFile = "quiz_questions.json"  
     questions = jsonFile
     user_profile = UserProfile(name, age, gender, {
         'Extraversion': {}, 'Agreeableness': {},
@@ -264,8 +264,7 @@ def main():
     for trait, score in trait_scores.items():
         print(f"{trait}: {score}")
     print(user_profile)
-
-
+    user_profile.DisplayGraph(type="user")  
 
     
 if __name__== "__main__":
