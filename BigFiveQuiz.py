@@ -221,12 +221,12 @@ class BigFive:
         """Starts Big Five Personality Quiz and updates responses
         """
         for trait, questions in self.questions.items():
-            print(f"{questions}")
-            response = int(input(f"Enter your answer for {trait} trait, Please enter a number between 1-5: "))
+            for question_text in questions.values():  
+                response = int(input(f"\n{trait} Trait: {question_text}\nEnter your answer, Please enter a number between 1-5: "))
             if 1 <= response <= 5:
-                self.userProfile.scores[trait].append({trait: response})
+                self.userProfile.scores[trait].append(response)
             else:
-                print("Invalid, Enter a number between 1-5.")
+                print("Invalid response. Please enter a number between 1-5.")
                 
     def saveUserProfile(self, filepath):
         """Saves user personality test results
