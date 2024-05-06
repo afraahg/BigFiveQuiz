@@ -233,7 +233,7 @@ class BigFive:
                     else:
                         print("Invalid response. Please enter a number between 1-5.")
                 except ValueError:
-                    print("Invalid input. Please enter a number.")
+                    print("Invalid input. Please enter a number between 1-5.")
                 
     def saveUserProfile(self, filepath):
         """Saves user personality test results
