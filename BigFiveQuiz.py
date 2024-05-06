@@ -12,9 +12,7 @@ class UserProfile:
         self.age=age
         self.gender=gender
         #score tracker
-        # Initialize scores as a dictionary of dictionaries to store scores for each question under each trait.
         self.scores=scores
-
         """{'Extraversion': {'EXT1': 0, 'EXT2': 0, 'EXT3': 0,'EXT4': 0, 'EXT5': 0, 'EXT6': 0,'EXT7': 0, 'EXT8': 0, 'EXT9': 0, 'EXT10':0 },
                         'Agreeableness': {'AGR1': 0, 'AGR2': 0, 'AGR3': 0, 'AGR4': 0, 'AGR5': 0, 'AGR6': 0, 'AGR7': 0, 'AGR8': 0, 'AGR9': 0, 'AGR10': 0},
                         'Conscientiousness': {'CSN1': 0, 'CSN2': 0, 'CSN3': 0, 'CSN4': 0, 'CSN5': 0, 'CSN6': 0, 'CSN7': 0, 'CSN8': 0, 'CSN9': 0, 'CSN10':0},
@@ -139,7 +137,7 @@ class UserProfile:
             Gives a greeting for the user
             Returns: self.name
         """
-        return f"BigFive Quiz for {self.name}"
+        return f"Hi {self.name}, here are your results!"
 
     def getProfile(self):
         """
@@ -150,33 +148,18 @@ class UserProfile:
     
 def userInput(big_five_obj, user_profile_obj):
     """
-    Manages user input for the BigFive personality quiz using the BigFive instance, updating the UserProfile with responses. 
-    It checks for the existence of the startQuiz method and executes it, handling errors if the method does not exist.
+    Function that handles user input for the BigFive personality quiz. It interacts with the user
+    to gather responses to personality trait questions. Once all responses are collected, a new UserProfile
+    object is created and added to a list of users.
 
     Parameters:
     big_five_obj (BigFive): An instance of the BigFive class that contains and manages the personality quiz.
     user_profile_obj (UserProfile): An instance of the UserProfile class where the user's personal data and quiz responses are stored.
 
     Returns:
-    UserProfile: Returns the updated user profile.
-
-    
-    Techniques Used: Exception handling with f-strings containing expressions
+    list: Returns a list containing the updated or newly created user profiles.
     """
-    try:
-        # Attempting to call startQuiz to see if it exists
-        big_five_obj.startQuiz(user_profile_obj)
-        return user_profile_obj
-    except AttributeError as e:
-        error_message = f"Attribute error: {str(e)}. Please check the 'BigFive' class for the 'startQuiz' method."
-        print(error_message)
-        return None
-    except Exception as e:
-        print(f"An unexpected error occurred: {str(e)}")
-        return None
-
-
-
+    big_five_obj.start_quiz(user_profile_obj)  
     
 def display_question(self, user_name, questions):
     """
@@ -199,11 +182,13 @@ def calculate_score(scores):
     Returns:
         dict: Dictionary containing the overall scores for each personality trait.
     """
-    trait_scores = {}
+    trait_averages = {}
     for trait, responses in scores.items():
-        total_score = sum(response[trait] for response in responses)
-        trait_scores[trait] = total_score / len(responses)
-    return trait_scores
+        total_score = sum(responses.values())
+        average_score = total_score / len(responses)
+        rounded_average_score = round(average_score)
+        trait_averages[trait] = rounded_average_score
+    return trait_averages
 
  
 class BigFive:
@@ -237,13 +222,18 @@ class BigFive:
     def startQuiz(self):
         """Starts Big Five Personality Quiz and updates responses
         """
-        for trait, questions in self.questions.items():
-            for question_text in questions.values():  
-                response = int(input(f"\n{trait} Trait: {question_text}\nEnter your answer, Please enter a number between 1-5: "))
-            if 1 <= response <= 5:
-                self.userProfile.scores[trait].append(response)
-            else:
-                print("Invalid response. Please enter a number between 1-5.")
+        for trait, trait_questions in self.questions.items():
+            self.userProfile.scores[trait] = {}  
+            for question_id, question_rank in trait_questions.items():
+                response = input(f"\n{question_id}\n{question_rank} ")
+                try:
+                    response = int(response)
+                    if 1 <= response <= 5:
+                        self.userProfile.scores[trait][question_id] = response  
+                    else:
+                        print("Invalid response. Please enter a number between 1-5.")
+                except ValueError:
+                    print("Invalid input. Please enter a number.")
                 
     def saveUserProfile(self, filepath):
         """Saves user personality test results
@@ -260,13 +250,13 @@ def main():
     """
     name = input("Enter your name: ")
     age = input("Enter your age: ")
-    gender = input("Enter your gender(can be Male or Female or M or F): ")
+    gender = input("Enter your gender: ")
     jsonFile = "quiz_questions.json"  # Provide the path to your JSON file.
     questions = jsonFile
     user_profile = UserProfile(name, age, gender, {
-        'Extraversion': [], 'Agreeableness': [],
-        'Conscientiousness': [], 'Neuroticism': [],
-        'Openness': []
+        'Extraversion': {}, 'Agreeableness': {},
+        'Conscientiousness': {}, 'Neuroticism': {},
+        'Openness': {}
     })
     big_five = BigFive(questions, user_profile)
     big_five.startQuiz()
