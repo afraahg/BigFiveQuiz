@@ -150,22 +150,32 @@ class UserProfile:
     
 def userInput(big_five_obj, user_profile_obj):
     """
-    Function that handles user input for the BigFive personality quiz. It uses the BigFive instance
-    to manage the quiz process, updating the UserProfile with the user's responses. After completing the quiz,
-    the updated UserProfile is returned in a list.
+    Manages user input for the BigFive personality quiz using the BigFive instance, updating the UserProfile with responses. 
+    It checks for the existence of the startQuiz method and executes it, handling errors if the method does not exist.
 
     Parameters:
     big_five_obj (BigFive): An instance of the BigFive class that contains and manages the personality quiz.
     user_profile_obj (UserProfile): An instance of the UserProfile class where the user's personal data and quiz responses are stored.
 
     Returns:
-    list: Returns a list containing the updated user profile.
-    """
-    # Start the quiz and update the user profile
-    big_five_obj.startQuiz(user_profile_obj)  # Ensure this is the correct method name in the BigFive class
+    UserProfile: Returns the updated user profile.
 
-    # Returning the updated user profile in a list for consistency with function description
-    return [user_profile_obj]
+    
+    Techniques Used: Exception handling with f-strings containing expressions
+    """
+    try:
+        # Attempting to call startQuiz to see if it exists
+        big_five_obj.startQuiz(user_profile_obj)
+        return user_profile_obj
+    except AttributeError as e:
+        error_message = f"Attribute error: {str(e)}. Please check the 'BigFive' class for the 'startQuiz' method."
+        print(error_message)
+        return None
+    except Exception as e:
+        print(f"An unexpected error occurred: {str(e)}")
+        return None
+
+
 
     
 def display_question(self, user_name, questions):
