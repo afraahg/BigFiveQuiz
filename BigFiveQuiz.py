@@ -247,9 +247,9 @@ def main():
     jsonFile = "quiz_questions.json"  # Provide the path to your JSON file.
     questions = jsonFile
     user_profile = UserProfile(name, age, gender, {
-        'Extraversion': [], 'Agreeableness': [],
-        'Conscientiousness': [], 'Neuroticism': [],
-        'Openness': []
+        'Extraversion': {}, 'Agreeableness': {},
+        'Conscientiousness': {}, 'Neuroticism': {},
+        'Openness': {}
     })
     big_five = BigFive(questions, user_profile)
     big_five.startQuiz()
