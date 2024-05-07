@@ -223,6 +223,7 @@ class BigFive:
             self.userProfile.scores[trait] = {}  
             for question_id, question_rank in trait_questions.items():
                 
+                loops = 0
                 while True:
                     response = input(f"\n{question_id}\n{question_rank} ")
                     if response == "1" or response == "2" or response == "3" or response == "4" or response == "5":
@@ -231,6 +232,10 @@ class BigFive:
                     else:
                         print("Invalid response. Please enter a" \
                         "number between 1-5.")
+                        loops += 1
+                        if loops > 5:
+                            print("Clearly you don't pay attention to details")
+                
                 
     def saveUserProfile(self, filepath):
         """Saves user personality test results
