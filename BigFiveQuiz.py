@@ -234,7 +234,7 @@ class BigFive:
                         "number between 1-5.")
                         loops += 1
                         if loops > 5:
-                            print("Clearly you don't pay attention to details")
+                            print("Clearly you don't pay attention to details.")
                 
                 
     def saveUserProfile(self, filepath):
