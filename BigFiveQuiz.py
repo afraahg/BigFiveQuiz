@@ -116,7 +116,22 @@ class UserProfile:
             
             plt.show()
 
+    def DisplayPie(self):
+        """
+        Displays a pie chart showing the distribution of personality traits
+        """
+        trait_labels = ['Extraversion', 'Agreeableness', 'Conscientiousness', 'Neuroticism', 'Openness']
+        trait_scores = [sum(self.scores['Extraversion'].values()),
+                        sum(self.scores['Agreeableness'].values()),
+                        sum(self.scores['Conscientiousness'].values()),
+                        sum(self.scores['Neuroticism'].values()),
+                        sum(self.scores['Openness'].values())]
         
+        plt.figure(figsize=(8, 8))
+        plt.pie(trait_scores, labels=trait_labels, autopct='%1.1f%%', startangle=90)
+        plt.title('Personality Trait Distribution')
+        plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+        plt.show()    
     
     def CompareUser(self, otherUser):
         """Checks if user is in directory
@@ -269,6 +284,7 @@ def main():
         print(f"{trait}: {score}")
     print(user_profile)
     user_profile.DisplayGraph(type="user")  
+    user_profile.DisplayPie()
 
     
 if __name__== "__main__":
