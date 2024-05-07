@@ -280,8 +280,7 @@ def main():
     big_five = BigFive(questions, user_profile)
     big_five.startQuiz()
     trait_scores = calculate_score(user_profile.scores)
-    for trait, score in trait_scores.items():
-        print(f"{trait}: {score}")
+    print('\n'.join([f"{trait}: {score}" for trait, score in trait_scores.items()]))
     print(user_profile)
     user_profile.DisplayGraph(type="user")  
     user_profile.DisplayPie()
