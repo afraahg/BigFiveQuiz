@@ -210,7 +210,6 @@ def calculate_score(scores):
         rounded_average_score = round(average_score)
         trait_averages[trait] = rounded_average_score
     return trait_averages
-
  
 class BigFive:
     """Represents BigFive Quiz
