@@ -276,8 +276,19 @@ def main():
     Executes Big Five Quiz
     """
     name = input("Enter your name: ")
-    age = input("Enter your age: ")
-    gender = input("Enter your gender: ")
+    while True:
+        age_input = input("Enter your age: ")
+        if age_input.isdigit():
+            age = int(age_input)
+            break
+        else:
+            print("Age must be a valid integer. Please try again.")
+    while True:
+        gender = input("Enter your gender: ")
+        if gender.isalpha():
+            break
+        else:
+            print("Gender must be a valid word. Please try again.")
     jsonFile = "quiz_questions.json"  
     questions = jsonFile
     user_profile = UserProfile(name, age, gender, {
