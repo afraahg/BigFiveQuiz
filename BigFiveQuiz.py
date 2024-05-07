@@ -163,16 +163,12 @@ def userInput(big_five_obj, user_profile_obj):
     return [user_profile_obj]
     
 def display_question(self, user_name, questions):
-    """
-    Displays a formatted question to the user with their name included. This method is used during
-    a quiz session to present each question in a personalized format, enhancing the user's engagement.
-
-    Parameters:
-    user_name (str): The name of the user taking the quiz, used to personalize the question display.
-    question (str): The text of the question to be displayed.
-    """
-    print(f"{user_name}:\n{questions}")
-
+     # Check if there are any questions to display
+        if self.questions:
+            print(f"{self.userProfile.name}:\n{self.questions}")
+        else:
+            # Raise an error if there are no questions
+            raise ValueError("No questions available to display.")
 def calculate_score(scores):
     """
     Calculates overall scores for each Big Five personality traits based on user's responses.
@@ -226,15 +222,15 @@ class BigFive:
         for trait, trait_questions in self.questions.items():
             self.userProfile.scores[trait] = {}  
             for question_id, question_rank in trait_questions.items():
-                
-                while True:
-                    response = input(f"\n{question_id}\n{question_rank} ")
-                    if response == "1" or response == "2" or response == "3" or response == "4" or response == "5":
-                        self.userProfile.scores[trait][question_id] = int(response) 
-                        break
+                response = input(f"\n{question_id}\n{question_rank} ")
+                try:
+                    response = int(response)
+                    if 1 <= response <= 5:
+                        self.userProfile.scores[trait][question_id] = response  
                     else:
-                        print("Invalid response. Please enter a" \
-                        "number between 1-5.")
+                        print("Invalid response. Please enter a number between 1-5.")
+                except ValueError:
+                    print("Invalid input. Please enter a number between 1-5.")
                 
     def saveUserProfile(self, filepath):
         """Saves user personality test results
