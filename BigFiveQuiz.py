@@ -230,9 +230,12 @@ class BigFive:
                         self.userProfile.scores[trait][question_id] = int(response) 
                         break
                     else:
-                        print("Invalid response. Please enter a number between 1-5.")
-                except ValueError:
-                    print("Invalid input. Please enter a number between 1-5.")
+                        print("Invalid response. Please enter a " \
+                        "number between 1-5.")
+                        loops += 1
+                        if loops > 5:
+                            print("Clearly you don't pay attention to details.")
+                
                 
     def saveUserProfile(self, filepath):
         """Saves user personality test results
