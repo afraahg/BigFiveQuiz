@@ -5,6 +5,15 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 class UserProfile:
+    """
+    Builds the user's profile with given information.
+
+    Attributes:
+        name: the user's name
+        age: the user's age
+        gender: the user's gender
+        scores: the resulting scores from the quiz
+    """
     
     def __init__(self, name, age, gender, scores):
         
@@ -152,7 +161,7 @@ class UserProfile:
             Gives a greeting for the user
             Returns: self.name
         """
-        return f"Hi {self.name}, here are your results!"
+        return f"\nHi {self.name}, here are your results!\n"
 
     def getProfile(self):
         """
@@ -280,6 +289,7 @@ def main():
     big_five = BigFive(questions, user_profile)
     big_five.startQuiz()
     trait_scores = calculate_score(user_profile.scores)
+    print("\nAverages:\n")
     print('\n'.join([f"{trait}: {score}" for trait, score in trait_scores.items()]))
     print(user_profile)
     user_profile.DisplayGraph(type="user")  
