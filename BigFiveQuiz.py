@@ -230,7 +230,7 @@ class BigFive:
                         self.userProfile.scores[trait][question_id] = int(response) 
                         break
                     else:
-                        print("Invalid response. Please enter a" \
+                        print("Invalid response. Please enter a " \
                         "number between 1-5.")
                         loops += 1
                         if loops > 5:
