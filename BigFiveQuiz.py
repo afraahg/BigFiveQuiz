@@ -152,7 +152,7 @@ class UserProfile:
             Gives a greeting for the user
             Returns: self.name
         """
-        return f"Hi {self.name}, here are your results!"
+        return f"\nHi {self.name}, here are your results!\n"
 
     def getProfile(self):
         """
@@ -280,6 +280,7 @@ def main():
     big_five = BigFive(questions, user_profile)
     big_five.startQuiz()
     trait_scores = calculate_score(user_profile.scores)
+    print("\nAverages:\n")
     for trait, score in trait_scores.items():
         print(f"{trait}: {score}")
     print(user_profile)
