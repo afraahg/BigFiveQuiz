@@ -5,6 +5,15 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 class UserProfile:
+    """
+    Builds the user's profile with given information.
+
+    Attributes:
+        name: the user's name
+        age: the user's age
+        gender: the user's gender
+        scores: the resulting scores from the quiz
+    """
     
     def __init__(self, name, age, gender, scores):
         
