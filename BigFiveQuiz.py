@@ -228,9 +228,9 @@ class BigFive:
             for question_id, question_rank in trait_questions.items():
                 
                 while True:
-                    response = int(input(f"\n{question_id}\n{question_rank} "))
-                    if 1 <= response <= 5:
-                        self.userProfile.scores[trait][question_id] = response 
+                    response = input(f"\n{question_id}\n{question_rank} ")
+                    if response == "1" or response == "2" or response == "3" or response == "4" or response == "5":
+                        self.userProfile.scores[trait][question_id] = int(response) 
                         break
                     else:
                         print("Invalid response. Please enter a" \
