@@ -217,7 +217,9 @@ class BigFive:
         return str(self.user_profile)
 
     def startQuiz(self):
-        """Starts Big Five Personality Quiz and updates responses
+        """Starts Big Five Personality Quiz and updates responses. 
+            Checks for invalid inputs and admonishes user if they 
+            have more than 5 invalid inputs in a row.
         """
         for trait, trait_questions in self.questions.items():
             self.userProfile.scores[trait] = {}  
