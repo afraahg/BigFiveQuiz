@@ -282,13 +282,13 @@ def main():
             age = int(age_input)
             break
         else:
-            print("Age must be a valid integer. Please try again.")
+            print("Age must be a valid integer, please try again.")
     while True:
         gender = input("Enter your gender: ")
         if gender.isalpha():
             break
         else:
-            print("Gender must be a valid word. Please try again.")
+            print("Please enter a valid gender")
     jsonFile = "quiz_questions.json"  
     questions = jsonFile
     user_profile = UserProfile(name, age, gender, {
