@@ -1,4 +1,3 @@
-##
 import json
 import pandas as pd
 import seaborn as sns
@@ -22,12 +21,21 @@ class UserProfile:
         self.gender=gender
         #score tracker
         self.scores=scores
-        """{'Extraversion': {'EXT1': 0, 'EXT2': 0, 'EXT3': 0,'EXT4': 0, 'EXT5': 0, 'EXT6': 0,'EXT7': 0, 'EXT8': 0, 'EXT9': 0, 'EXT10':0 },
-                        'Agreeableness': {'AGR1': 0, 'AGR2': 0, 'AGR3': 0, 'AGR4': 0, 'AGR5': 0, 'AGR6': 0, 'AGR7': 0, 'AGR8': 0, 'AGR9': 0, 'AGR10': 0},
-                        'Conscientiousness': {'CSN1': 0, 'CSN2': 0, 'CSN3': 0, 'CSN4': 0, 'CSN5': 0, 'CSN6': 0, 'CSN7': 0, 'CSN8': 0, 'CSN9': 0, 'CSN10':0},
-                        'Neuroticism': {'EST1': 0, 'EST2': 0, 'EST3': 0, 'EST4': 0, 'EST5': 0, 'EST6': 0, 'EST7': 0, 'EST8': 0, 'EST9': 0, 'EST10': 0},
-                        'Openness': {'OPN1': 0, 'OPN2': 0, 'OPN3': 0, 'OPN4': 0, 'OPN5': 0, 'OPN6': 0, 'OPN7': 0, 'OPN8': 0, 'OPN9': 0, 'OPN10': 0}
-                        }"""
+        """{'Extraversion': {'EXT1': 0, 'EXT2': 0, 'EXT3': 0,'EXT4': 0, 
+            'EXT5': 0, 'EXT6': 0,'EXT7': 0, 'EXT8': 0, 'EXT9': 0, 'EXT10':0 },
+            
+            'Agreeableness': {'AGR1': 0, 'AGR2': 0, 'AGR3': 0, 'AGR4': 0, 
+            'AGR5': 0, 'AGR6': 0, 'AGR7': 0, 'AGR8': 0, 'AGR9': 0, 'AGR10': 0},
+            
+            'Conscientiousness': {'CSN1': 0, 'CSN2': 0, 'CSN3': 0, 'CSN4': 0,
+            'CSN5': 0, 'CSN6': 0, 'CSN7': 0, 'CSN8': 0, 'CSN9': 0, 'CSN10':0},
+            
+            'Neuroticism': {'EST1': 0, 'EST2': 0, 'EST3': 0, 'EST4': 0,
+            'EST5': 0, 'EST6': 0, 'EST7': 0, 'EST8': 0, 'EST9': 0, 'EST10': 0},
+            
+            'Openness': {'OPN1': 0, 'OPN2': 0, 'OPN3': 0, 'OPN4': 0, 'OPN5': 0,
+            'OPN6': 0, 'OPN7': 0, 'OPN8': 0, 'OPN9': 0, 'OPN10': 0}
+            }"""
 
         
         #json profile
@@ -46,7 +54,8 @@ class UserProfile:
         """
         
         # x axis is big five, y axis is the number of responses 
-        # will need to loop through dictionary to convert responses to list for optimal output for graph
+        # will need to loop through dictionary to convert responses to 
+        # list for optimal output for graph
         #convert questions and responses to list objects
 
         extraRES=[]
@@ -85,14 +94,24 @@ class UserProfile:
         print(openRES)
         
         
-        #self.scores keys: Extraversion, Agreeableness, Conscientiousness, Neuroticism, Openness
+        #self.scores keys: Extraversion, Agreeableness, Conscientiousness, 
+        # Neuroticism, Openness
         
         #convert questions and responses to dataframe object
-        extraDF=pd.DataFrame({'Extraversion Responses': extraRES, 'Extraversion Questions': extraQ})
-        agrDF=pd.DataFrame({'Agreeableness Responses': agrRES, 'Agreeableness Questions': agrQ})
-        consDF=pd.DataFrame({'Conscientiousness Responses': consRES, 'Conscientiousness Questions': consQ})
-        neuroDF=pd.DataFrame({'Neuroticism Responses': neuroRES, 'Neuroticism Questions': neuroQ})
-        openDF=pd.DataFrame({'Openness Responses': openRES, 'Openness Questions': openQ} )
+        extraDF=pd.DataFrame({'Extraversion Responses': extraRES,\
+        'Extraversion Questions': extraQ})
+        
+        agrDF=pd.DataFrame({'Agreeableness Responses': agrRES, 
+        'Agreeableness Questions': agrQ})
+        
+        consDF=pd.DataFrame({'Conscientiousness Responses': consRES, 
+        'Conscientiousness Questions': consQ})
+        
+        neuroDF=pd.DataFrame({'Neuroticism Responses': neuroRES, 
+        'Neuroticism Questions': neuroQ})
+        
+        openDF=pd.DataFrame({'Openness Responses': openRES, 
+        'Openness Questions': openQ} )
         
         print(extraDF)
         print(agrDF)
@@ -105,7 +124,8 @@ class UserProfile:
             
             print()
         
-        # (2) avg trait graph: displays avg responses for each trait for ALL users 
+        # (2) avg trait graph: displays avg responses
+        # for each trait for ALL users 
         if type == "avg":
             
             print()
@@ -117,11 +137,20 @@ class UserProfile:
             
             #df.plot.bar(x, y)
             #need to figure out appropriate method to implement 
-            extraDF.plot(kind='bar', x="Extraversion Questions", y="Extraversion Responses")
-            agrDF.plot(kind='bar', x="Agreeableness Questions", y="Agreeableness Responses")
-            consDF.plot(kind='bar',x="Conscientiousness Questions", y="Conscientiousness Responses")
-            neuroDF.plot(kind='bar', x="Neuroticism Questions", y="Neuroticism Responses")
-            openDF.plot(kind='bar', x="Openness Questions", y="Openness Responses")
+            extraDF.plot(kind='bar', x="Extraversion Questions",\
+            y="Extraversion Responses")
+            
+            agrDF.plot(kind='bar', x="Agreeableness Questions",\
+            y="Agreeableness Responses")
+            
+            consDF.plot(kind='bar',x="Conscientiousness Questions",\
+            y="Conscientiousness Responses")
+            
+            neuroDF.plot(kind='bar', x="Neuroticism Questions",\
+            y="Neuroticism Responses")
+            
+            openDF.plot(kind='bar', x="Openness Questions",\
+            y="Openness Responses")
             
             plt.show()
 
@@ -129,7 +158,8 @@ class UserProfile:
         """
         Displays a pie chart showing the distribution of personality traits
         """
-        trait_labels = ['Extraversion', 'Agreeableness', 'Conscientiousness', 'Neuroticism', 'Openness']
+        trait_labels = ['Extraversion', 'Agreeableness', 'Conscientiousness',\
+        'Neuroticism', 'Openness']
         trait_scores = [sum(self.scores['Extraversion'].values()),
                         sum(self.scores['Agreeableness'].values()),
                         sum(self.scores['Conscientiousness'].values()),
@@ -137,9 +167,11 @@ class UserProfile:
                         sum(self.scores['Openness'].values())]
         
         plt.figure(figsize=(8, 8))
-        plt.pie(trait_scores, labels=trait_labels, autopct='%1.1f%%', startangle=90)
+        plt.pie(trait_scores, labels=trait_labels, autopct='%1.1f%%',\
+        startangle=90)
         plt.title('Personality Trait Distribution')
-        plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+        # Equal aspect ratio ensures that pie is drawn as a circle.
+        plt.axis('equal')  
         plt.show()    
     
     def CompareUser(self, otherUser):
@@ -165,13 +197,16 @@ class UserProfile:
     
 def userInput(big_five_obj, user_profile_obj):
     """
-    Function that handles user input for the BigFive personality quiz. It interacts with the user
-    to gather responses to personality trait questions. Once all responses are collected, a new UserProfile
+    Function that handles user input for the BigFive personality quiz. 
+    It interacts with the user to gather responses to personality trait 
+    questions. Once all responses are collected, a new UserProfile
     object is created and added to a list of users.
 
     Parameters:
-    big_five_obj (BigFive): An instance of the BigFive class that contains and manages the personality quiz.
-    user_profile_obj (UserProfile): An instance of the UserProfile class where the user's personal data and quiz responses are stored.
+    big_five_obj (BigFive): An instance of the BigFive class that contains 
+    and manages the personality quiz. user_profile_obj (UserProfile): 
+    An instance of the UserProfile class where the user's personal data 
+    and quiz responses are stored.
 
     Returns:
     list: Returns a list containing the updated or newly created user profiles.
@@ -188,14 +223,16 @@ def display_question(self, user_name, questions):
             raise ValueError("No questions available to display.")
 def calculate_score(scores):
     """
-    Calculates overall scores for each Big Five personality traits based on user's responses.
-    Averages them, then sorts them.
+    Calculates overall scores for each Big Five personality traits
+    based on user's responses. Averages them, then sorts them.
 
     Args:
-        scores (dict): Dictionary containing user responses for each personality trait.
+        scores (dict): Dictionary containing user responses for each
+        personality trait.
 
     Returns:
-        dict: A sorted dictionary containing the average scores for each personality trait.
+        dict: A sorted dictionary containing the average scores for
+        each personality trait.
     """
     trait_averages = {}
     for trait, responses in scores.items():
@@ -203,7 +240,8 @@ def calculate_score(scores):
         average_score = total_score / len(responses)
         rounded_average_score = round(average_score)
         trait_averages[trait] = rounded_average_score
-    sorted_trait_averages = dict(sorted(trait_averages.items(), key=lambda x: x[1], reverse=True))
+    sorted_trait_averages = dict(sorted(trait_averages.items(),\
+    key=lambda x: x[1], reverse=True))
     return sorted_trait_averages
  
 class BigFive:
@@ -225,8 +263,9 @@ class BigFive:
             self.questions = json.load(jsonFile)
     def __str__(self):
         """
-        Returns a string representation of the user profile associated with an instance of the class.
-        This method provides a convenient way to quickly view the user profile's contents in a string format,
+        Returns a string representation of the user profile associated with 
+        an instance of the class. This method provides a convenient way to 
+        quickly view the user profile's contents in a string format,
         which can be useful for debugging or logging purposes.
 
         Returns:
@@ -246,8 +285,10 @@ class BigFive:
                 loops = 0
                 while True:
                     response = input(f"\n{question_id}\n{question_rank} ")
-                    if response == "1" or response == "2" or response == "3" or response == "4" or response == "5":
-                        self.userProfile.scores[trait][question_id] = int(response) 
+                    if response == "1" or response == "2" or response == "3" \
+                        or response == "4" or response == "5":
+                        self.userProfile.scores[trait][question_id] = \
+                        int(response) 
                         break
                     else:
                         print("Invalid response. Please enter a " \
@@ -298,7 +339,8 @@ def main():
     trait_scores = calculate_score(user_profile.scores)
     big_five.saveUserProfile(name, trait_scores)
     print("\nAverages:\n")
-    print('\n'.join([f"{trait}: {score}" for trait, score in trait_scores.items()]))
+    print('\n'.join([f"{trait}: {score}" for trait, score in \
+    trait_scores.items()]))
     print(user_profile)
     user_profile.DisplayGraph(type="user")  
     user_profile.DisplayPie()
