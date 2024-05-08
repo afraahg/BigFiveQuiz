@@ -270,7 +270,7 @@ class BigFive:
         """
         with open("big5_output.txt", "w", encoding = "utf-8") as f:
             f.write(str(person) + ": ")
-            f.write(results)
+            f.write(str(results))
             f.close()
 
 def main():
@@ -301,6 +301,7 @@ def main():
     big_five = BigFive(questions, user_profile)
     big_five.startQuiz()
     trait_scores = calculate_score(user_profile.scores)
+    big_five.saveUserProfile(name, trait_scores)
     print("\nAverages:\n")
     print('\n'.join([f"{trait}: {score}" for trait, score in trait_scores.items()]))
     print(user_profile)
