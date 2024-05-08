@@ -262,14 +262,15 @@ class BigFive:
                             print("Clearly you don't pay attention to details.")
                 
                 
-    def saveUserProfile(self, filepath):
+    def saveUserProfile(self, results):
         """Saves user personality test results
 
         Args:
             filepath (str): JSON file path
         """
-        with open(filepath, "w") as f:
-            json.dump(self.userProfile.getProfile(), f)
+        with open("big5_output.txt", "w", encoding = "utf-8") as f: 
+            f.write(results)
+            f.close()
 
 def main():
     """
