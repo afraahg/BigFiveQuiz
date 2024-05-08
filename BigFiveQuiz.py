@@ -162,13 +162,6 @@ class UserProfile:
             Returns: self.name
         """
         return f"\nHi {self.name}, here are your results!\n"
-
-    def getProfile(self):
-        """
-            Retrieves data from JSON file
-            Returns: self.JSON
-        """
-        return self.profileJSON
     
 def userInput(big_five_obj, user_profile_obj):
     """
