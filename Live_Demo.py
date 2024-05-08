@@ -22,23 +22,18 @@ class UserProfile:
         
         #json profile
         self.profileJSON={self.name:self.scores}
-        
-    def DisplayGraph(self, type="user"):
-        """DisplayGraph will display a graph based on the type passed in.
-        (1)total graph: displays results from all users in directory
-        (2)avg trait graph: displays avg responses for each trait for ALL users 
-        (3)user graph: displays graph for responses in self
-
-        Args:
-            self (UserProfile): self profile to display 
-            other (UserProfile): other graph to be compared to?
-            type (str): _description_
+    
+    def getDataFrames(self):
+        """Creates DataFrame objects for user scores 
+                .getDataFrames()[0] Extraversion
+                .getDataFrames()[1] Agreeableness
+                .getDataFrames()[2] Conscientiousness
+                .getDataFrames()[3] Neuroticism
+                .getDataFrames()[4] Openness
+        Returns:
+            (list): list of Dataframe objects corresponding to each personality traits 
         """
         
-        # x axis is big five, y axis is the number of responses 
-        # will need to loop through dictionary to convert responses to list for optimal output for graph
-        #convert questions and responses to list objects
-
         extraRES=[]
         extraQ=[]
         for q,answers in self.scores['Extraversion'].items():
@@ -89,6 +84,26 @@ class UserProfile:
         print(consDF)
         print(neuroDF)
         print(openDF)
+        return [extraDF, agrDF, consDF, neuroDF, openDF ]
+        
+    def DisplayGraph(self, other=None, type="user"):
+        """DisplayGraph will display a graph based on the type passed in.
+        Calls getDataFrames for each user to sort scores into DataFrame objects
+        
+        (1)total graph: displays results from all users in directory
+        (2)avg trait graph: displays avg responses for each trait for ALL users 
+        (3)user graph: displays graph for responses in self
+
+        Args:
+            self (UserProfile): self profile to display 
+            other (UserProfile): other graph to be compared to?
+            type (str): _description_
+        """
+        
+        # x axis is big five, y axis is the number of responses 
+        # will need to loop through dictionary to convert responses to list for optimal output for graph
+        #convert questions and responses to list objects
+
         
         # (1) total graph: displays results from all users in directory
         if type == "total":
@@ -97,23 +112,34 @@ class UserProfile:
         
         # (2) avg trait graph: displays avg responses for each trait for ALL users 
         if type == "avg":
+            """.getDataFrames()[0] Extraversion
+                .getDataFrames()[1] Agreeableness
+                .getDataFrames()[2] Conscientiousness
+                .getDataFrames()[3] Neuroticism
+                .getDataFrames()[4] Openness
+            """
             
-            print()
+            #how to calculate average? for each user 
+            user1DFs=self.getDataFrames()
+            user2DFs=other.getDataFrames()
+            print(user1DFs)
         
         
         # (3) user graph: displays graph for responses in self for each category
         if type == "user":
+            user1DFs=self.getDataFrames()
             
             
+                
             #df.plot.bar(x, y)
             #need to figure out appropriate method to implement 
-            extraDF.plot(kind='bar', x="Extraversion Questions", y="Extraversion Responses")
-            agrDF.plot(kind='bar', x="Agreeableness Questions", y="Agreeableness Responses")
-            consDF.plot(kind='bar',x="Conscientiousness Questions", y="Conscientiousness Responses")
-            neuroDF.plot(kind='bar', x="Neuroticism Questions", y="Neuroticism Responses")
-            openDF.plot(kind='bar', x="Openness Questions", y="Openness Responses")
+            user1DFs[0].plot(kind='bar', x="Extraversion Questions", y="Extraversion Responses")
+            user1DFs[1].plot(kind='bar', x="Agreeableness Questions", y="Agreeableness Responses")
+            user1DFs[2].plot(kind='bar',x="Conscientiousness Questions", y="Conscientiousness Responses")
+            user1DFs[3].plot(kind='bar', x="Neuroticism Questions", y="Neuroticism Responses")
+            user1DFs[4].plot(kind='bar', x="Openness Questions", y="Openness Responses")
             
-            plt.show()
+            #plt.show()
 
         
 
@@ -121,14 +147,29 @@ class UserProfile:
 if __name__== "__main__":
     
     # user profile init: (name, age, gender, scores)
-    answerFile=None
-    sampleProfile=None
+    answerFile1=None
+    answerFile2=None
+    answerFile3=None
+    
+    sampleProfile1=None
+    sampleProfile2=None
+    sampleProfile3=None
+    
     with open("quiz_questions_answers.json", "r") as file:
-        answerFile = json.load(file)
-        
-    print(answerFile)
-    for person,answers in answerFile.items():
-        sampleProfile= UserProfile(person, 21, 'M', answers)
-            
-    sampleProfile.DisplayGraph()
+        answerFile1 = json.load(file)
+    with open("quiz_questions_answers2.json", "r") as file:
+        answerFile2 = json.load(file)
+    with open("quiz_questions_answers3.json", "r") as file:
+        answerFile3 = json.load(file)
+    
+    
+    
+    for person,answers in answerFile1.items():
+        sampleProfile1= UserProfile(person, 21, 'M', answers)
+    for person,answers in answerFile2.items():
+        sampleProfile2= UserProfile(person, 19, 'F', answers)
+    for person,answers in answerFile3.items():
+        sampleProfile3= UserProfile(person, 17, 'M', answers)
+    
+    sampleProfile2.DisplayGraph(sampleProfile3, 'avg')
     
