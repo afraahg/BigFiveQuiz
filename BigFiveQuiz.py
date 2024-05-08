@@ -1,3 +1,37 @@
+"""
+This Python script is designed to administer the Big Five Personality Test, 
+which assesses an individual's scores across five major personality traits: 
+Extraversion, Agreeableness, Conscientiousness, Neuroticism, and Openness. 
+The test results are presented visually through graphs and stored in a 
+structured format.
+
+The program utilizes several Python libraries including json for loading and 
+saving data, pandas for data manipulation, seaborn and matplotlib for data 
+visualization. It defines a 'UserProfile' class to manage user data, a 'BigFive'
+class to handle the quiz logic, and contains functions for starting the quiz, 
+calculating scores, and displaying results.
+
+Key Components:
+- UserProfile: Manages user data including name, age, gender, and test scores.
+- BigFive: Loads quiz questions, administers the quiz, and handles score updates.
+- DisplayGraph and DisplayPie: Methods within UserProfile for visualizing data.
+- main: The main function of the script which orchestrates user interactions, 
+quiz execution, and result presentation.
+
+The script expects user input for name, age, and gender, validates it, and uses 
+this data to create a user profile. The quiz questions are loaded from a JSON 
+file and the user answers are processed to calculate personality trait scores. 
+Results are saved and displayed graphically.
+
+Usage:
+The script is intended to be run directly. User inputs are gathered through 
+command-line prompts, 
+and the results are both displayed on the terminal and saved to a file.
+
+Requires:
+- json to manage quiz question storage and retrieval.
+- pandas, seaborn, and matplotlib for data handling and visualization.
+"""
 import json
 import pandas as pd
 import seaborn as sns
@@ -15,6 +49,31 @@ class UserProfile:
     """
     
     def __init__(self, name, age, gender, scores):
+        """
+        Initializes a new instance of the class with specified attributes.
+
+        This constructor initializes the instance with the name, age, gender, 
+        and a predefined structure for storing personality scores across various
+        traits such as Extraversion, Agreeableness, Conscientiousness, Neuroticism,
+        and Openness. Each trait contains scores for specific sub-traits 
+        (e.g., EXT1, EXT2 for Extraversion).
+
+        Parameters:
+        - name (str): The name of the individual.
+        - age (int): The age of the individual.
+        - gender (str): The gender of the individual.
+        - scores (dict): A nested dictionary pre-initialized to zero for each 
+        sub-trait under major 
+        personality traits.
+
+        Attributes:
+        - name (str): Stores the name of the individual.
+        - age (int): Stores the age of the individual.
+        - gender (str): Stores the gender of the individual.
+        - scores (dict): Stores the scores across various personality traits.
+        - profileJSON (dict): A dictionary mapping the individual's name to 
+        their scores.
+        """ 
         
         self.name=name
         self.age=age
@@ -156,7 +215,33 @@ class UserProfile:
 
     def DisplayPie(self):
         """
-        Displays a pie chart showing the distribution of personality traits
+        Displays a pie chart showing the distribution of personality traits.
+
+        This method calculates the total scores for each major personality trait 
+        (Extraversion, Agreeableness, Conscientiousness, Neuroticism, Openness) 
+        by summing the values in each respective category within the 'scores' 
+        attribute. It then uses these sums to plot a pie chart, visually 
+        representing the percentage distribution of each trait within the total.
+
+        The pie chart is formatted with percentages, starts from the top 
+        (90 degrees), and maintains a circular aspect ratio to ensure that it is
+        displayed as a circle. This visualization helps in understanding the 
+        proportion of each personality trait contributing to the profile.
+
+        Uses:
+        - `plt.pie` to create the pie chart.
+        - `plt.figure` to set the figure size.
+        - `plt.title` to add a title to the chart.
+        - `plt.axis` to ensure the pie chart is circular.
+        - `plt.show` to display the plot.
+
+        Requires:
+        - This method assumes that 'self.scores' is a dictionary with keys 
+        corresponding to trait names and values as dictionaries whose values can
+        be summed (i.e., numeric).
+
+        Returns:
+        - None: This method directly displays a matplotlib pie chart and does not return any values.
         """
         trait_labels = ['Extraversion', 'Agreeableness', 'Conscientiousness',\
         'Neuroticism', 'Openness']
@@ -218,17 +303,19 @@ def display_question(self, user_name, questions):
     """
     Displays a list of questions for a specified user.
 
-    This method checks if there are any questions stored in the 'questions' attribute. 
-    If questions are available, it prints them with the user's name. If no questions 
-    are present, it raises a ValueError indicating that there are no questions available 
-    to display.
+    This method checks if there are any questions stored in the 'questions' 
+    attribute. If questions are available, it prints them with the user's name. 
+    If no questions are present, it raises a ValueError indicating that there 
+    are no questions available to display.
 
     Parameters:
-    - user_name (str): The name of the user for whom the questions are being displayed.
+    - user_name (str): The name of the user for whom the questions are being 
+    displayed.
     - questions (list): A list of questions to be displayed.
 
     Raises:
-    - ValueError: If 'questions' is empty, indicating no questions are available to display.
+    - ValueError: If 'questions' is empty, indicating no questions are available
+    to display.
 
     Returns:
     - None
@@ -330,7 +417,39 @@ class BigFive:
 
 def main():
     """
-    Executes Big Five Quiz
+    Executes the Big Five Personality Quiz application.
+
+    This main function drives the application by interacting with the user to 
+    gather their name, age, and gender. It validates user input to ensure that 
+    age is a valid integer and gender is a string of alphabetic characters. 
+    After collecting user details, it creates a user profile and initializes a
+    Big Five personality quiz instance with a set of questions loaded from a 
+    JSON file.
+
+    The process involves:
+    - Collecting user information (name, age, gender).
+    - Loading personality test questions.
+    - Executing the quiz.
+    - Calculating and displaying the trait scores.
+    - Saving the user profile and displaying the results graphically with bar 
+    and pie charts.
+
+    Raises:
+    - This function will continually prompt the user until valid inputs for age
+    and gender are entered.
+
+    Notes:
+    - Assumes presence of a JSON file 'quiz_questions.json' for loading quiz 
+    questions.
+    - Relies on the 'UserProfile' and 'BigFive' classes and their methods for 
+    operations like conducting the quiz and visualizing results.
+
+    Outputs:
+    - Displays the user's personality trait scores and graphs representing these
+    scores.
+
+    Returns:
+    - None
     """
     name = input("Enter your name: ")
     while True:
