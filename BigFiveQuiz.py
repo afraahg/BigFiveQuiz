@@ -215,12 +215,31 @@ def userInput(big_five_obj, user_profile_obj):
     return [user_profile_obj]
     
 def display_question(self, user_name, questions):
-     # Check if there are any questions to display
-        if self.questions:
-            print(f"{self.userProfile.name}:\n{self.questions}")
-        else:
-            # Raise an error if there are no questions
-            raise ValueError("No questions available to display.")
+    """
+    Displays a list of questions for a specified user.
+
+    This method checks if there are any questions stored in the 'questions' attribute. 
+    If questions are available, it prints them with the user's name. If no questions 
+    are present, it raises a ValueError indicating that there are no questions available 
+    to display.
+
+    Parameters:
+    - user_name (str): The name of the user for whom the questions are being displayed.
+    - questions (list): A list of questions to be displayed.
+
+    Raises:
+    - ValueError: If 'questions' is empty, indicating no questions are available to display.
+
+    Returns:
+    - None
+    """
+    # Check if there are any questions to display
+    if self.questions:
+        print(f"{self.userProfile.name}:\n{self.questions}")
+    else:
+        # Raise an error if there are no questions
+        raise ValueError("No questions available to display.")
+
 def calculate_score(scores):
     """
     Calculates overall scores for each Big Five personality traits
