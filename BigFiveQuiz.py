@@ -189,12 +189,13 @@ def display_question(self, user_name, questions):
 def calculate_score(scores):
     """
     Calculates overall scores for each Big Five personality traits based on user's responses.
+    Averages them, then sorts them.
 
     Args:
         scores (dict): Dictionary containing user responses for each personality trait.
 
     Returns:
-        dict: Dictionary containing the overall scores for each personality trait.
+        dict: A sorted dictionary containing the average scores for each personality trait.
     """
     trait_averages = {}
     for trait, responses in scores.items():
@@ -202,7 +203,8 @@ def calculate_score(scores):
         average_score = total_score / len(responses)
         rounded_average_score = round(average_score)
         trait_averages[trait] = rounded_average_score
-    return trait_averages
+    sorted_trait_averages = dict(sorted(trait_averages.items(), key=lambda x: x[1], reverse=True))
+    return sorted_trait_averages
  
 class BigFive:
     """Represents BigFive Quiz
