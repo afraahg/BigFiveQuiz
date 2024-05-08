@@ -269,6 +269,7 @@ class BigFive:
             filepath (str): JSON file path
         """
         with open("big5_output.txt", "w", encoding = "utf-8") as f: 
+            f.write(str(person) + ": ")
             f.write(results)
             f.close()
 
