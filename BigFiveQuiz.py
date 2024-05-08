@@ -262,7 +262,7 @@ class BigFive:
                             print("Clearly you don't pay attention to details.")
                 
                 
-    def saveUserProfile(self, results):
+    def saveUserProfile(self, person, results):
         """Saves user personality test results
 
         Args:
