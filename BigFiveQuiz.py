@@ -259,19 +259,6 @@ class UserProfile:
         plt.axis('equal')  
         plt.show()    
     
-    def CompareUser(self, otherUser):
-        """Checks if user is in directory
-
-        Args:
-            otherUser (UserProfile): other user to be compared to
-
-        Returns:
-            (boolean): if user is in directory
-        """
-        
-        if self.name==otherUser.name:
-            return True
-        return False
 
     def __str__(self):
         """
